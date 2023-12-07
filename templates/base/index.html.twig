@@ -1,20 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BaseController!{% endblock %}
+{% block title %}
+	{{ parent() }}Accueil
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="container mt-5">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<div class="row section-container">
+			<div class="col-md-6 d-flex flex-column justify-content-center p-5">
+				<p class="text-center mb-4">Bonjour et bienvenue sur mon portfolio ! 😊
+					<br>
+					Je suis Lucas Moniez, étudiant en BTS SIO avec la spécialité SLAM (Solutions Logicielles et Applications Métiers) à l'EPSI d'Arras. 🎓
+					<br>
+					Né le 30 mai 2003, je suis passionné par l'informatique depuis mon enfance. 💻
+					<div class="text-center">
+						<button type="button" onclick="window.location.href='{{ path('app_decouverte') }}'" class="btn btn-primary btn-custom">Découvrir le génie derrière l'écran</button>
+					</div>
+				</p>
+			</div>
+			<div class="col-md-6 d-flex align-items-center justify-content-center">
+				<div class="img-container">
+					<img src="{{ asset('images/EC1A3754-2522-4789-AFC2-31D3F8022055.jpg') }}" alt="o1" class="img-fluid">
+				</div>
+			</div>
+		</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/portfolioL/src/Controller/BaseController.php'|file_link(0) }}">src/Controller/BaseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/portfolioL/templates/base/index.html.twig'|file_link(0) }}">templates/base/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="row section-container">
+			<div class="col-md-6 d-flex align-items-center justify-content-center">
+				<div class="img-container">
+					<img src="{{ asset('images/Screenshot_6.png') }}" alt="o2" class="img-fluid">
+				</div>
+			</div>
+			<div class="col-md-6 d-flex flex-column justify-content-center p-5">
+				<p class="text-center mb-4">Pendant mon BTS SIO, j'ai concrétisé mes connaissances à travers divers projets 🚀. Cette expérience a enrichi mes compétences en développement web et en gestion de projets informatiques.</p>
+				<div class="text-center">
+					<button type="button" onclick="window.location.href='{{ path('app_competences') }}'" class="btn btn-primary btn-custom">Explorer mes super-pouvoirs numériques</button>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

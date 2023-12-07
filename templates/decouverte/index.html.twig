@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}Qui suis-je ?
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<div class="row section-container">
+			<div class="col-md-6 d-flex flex-column justify-content-center p-5">
+				<p class="text-center mb-4">Salut à tous ! 😊
+					<br>
+					<br>
+					Je suis Lucas Moniez, né le 30 mai 2003 à Arras. Actuellement âgé de 20 ans.
+					<br>Je suis actuellement étudiant en deuxième année de BTS SIO à l'EPSI d'Arras, spécialisé en SLAM (Solutions Logicielles et Applications Métiers). 💻
+					<br>
+					<br>
+					Passionné par l'informatique depuis petit, c'est assez logiquement que je me suis orienté dans cette voie. 🚀
+					<br>
+					<br>
+					Titulaire d'un baccalauréat STMG au lycée Robespierre d'Arras, je me suis orienté vers l'EPSI d'Arras où je poursuis actuellement mes études.
+					<br>
+					<br>
+					Motivé, sérieux, j'ai eu l'occasion de réaliser différents projets scolaires, comme professionnel lors de mes stages de 1ère et 2ème année.
+					<br>
+					<br>J'ai su développer de nouvelles compétences, en quête de nouvelles connaissances, je suis toujours à la recherche de la dernière nouveauté. 🧠✨
+					<div class="text-center">
+						<a href="{{ path('app_decouverte') }}" download="NomDuFichierCV.pdf" class="btn btn-primary btn-custom">Télécharger mon CV</a>
+					</div>
+				</p>
+			</div>
+			<div class="col-md-6 d-flex align-items-center justify-content-center">
+				<div class="img-container">
+					<img src="{{ asset('images/EC1A3754-2522-4789-AFC2-31D3F8022055.jpg') }}" alt="Votre image" class="img-fluid">
+				</div>
+			</div>
+		</div>
+
+		<div class="row section-container">
+            <div class="col-md-12 text-center">
+                <p class="text-center mb-4">A toi de faire un choix !</p>
+            </div>
+        </div>
+
+        <div class="custom-flex-container">
+    <div class="custom-event-container">
+        <div class="custom-event-date">2020</div>
+        <div class="custom-event-content">Événement 1</div>
+    </div>
+    <div class="custom-event-container">
+        <div class="custom-event-date">2022</div>
+        <div class="custom-event-content">Événement 2</div>
+    </div>
+</div>
+
+        </div>
+			<div class="col-md-6 text-center">
+				<p class="text-center mb-4">Expérience professionnelle</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

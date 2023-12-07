@@ -1,16 +1,49 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}Lucas MONIEZ -
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link href="https://bootswatch.com/5/lumen/bootstrap.min.css" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		{% endblock %}
+	</head>
+	<div class="navbar">
+		<div class="logo">
+			<img src="votre_logo.png" alt="Logo" href="{{path('app_accueil')}}">
+		</div>
+		<div class="nav-links">
+			<ul>
+				<li><a href="{{path('app_accueil')}}">Accueil</a></li>
+				<li><a href="{{path('app_competences')}}">Compétences</a></li>
+				<li><a href="#">Projets</a></li>
+				<li><a href="#">Professionnel</a></li>
+				<li><a href="#">Certifications</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>
+		<div class="menu-hamburger">&#9776;</div>
+	</div>
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+	<footer>
+		<p>&copy; 2023 Lucas Moniez. Tous droits réservés.</p>
+		<div class="legal-info">
+			<a href="/privacy">Mentions légales</a>
+		</div>
+		<div class="footer-links">
+			<a href="https://www.linkedin.com/in/lucas-moniez-2228a7218/" target="_blank"><img src="{{ asset('images/linkedin-icon.png') }}" alt="LinkedIn"></a>
+			<a href="https://github.com/m-lucas7" target="_blank"><img src="{{ asset('images/github-icon.png') }}" alt="GitHub"></a>
+			<a href="/contact"><img src="{{ asset('images/contact-icon.png') }}" alt="Contact"></a>
+		</div>
+	</footer>
+	{% block javascripts %}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Q
+																																										yq46cDfL" crossorigin="anonymous"></script>
+	{% endblock %}
+</html></body></html>
