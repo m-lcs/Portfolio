@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Stages
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="text-center mb-4">Liste de mes stages réalisés au cours de mes années d'études.</h1>
+
+		{% for stage in stages %}
+			{% if stage.getAnnee().getAnnee() == 1 %}
+				<h4 class="text-center mb-4">Stage réalisé dans le cadre de la première année (SN1) :</h4>
+			{% elseif stage.getAnnee().getAnnee() == 2 %}
+				<h4 class="text-center mb-4">Stage réalisé dans le cadre de la deuxième année (SN2) :</h4>
+			{% endif %}
+
+			<div class="card mb-3">
+				<div class="row g-0">
+					<div class="col-md-4 mx-auto d-flex align-items-center text-center">
+						<img src="{{ asset('images/projets/' ~ stage.getLogo()) }}" class="img-fluid rounded-start" alt="{{ stage.getNom() }}" style="width: 70%;">
+					</div>
+
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">
+								<strong>{{ stage.getNom() }}</strong>
+							</h5>
+							<p class="card-text">{{ stage.getDescr() }}</p>
+							<a href="{{ path('app_pro-detail', {'id': stage.getId()}) }}" class="btn btn-primary">Voir en détail</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

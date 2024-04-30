@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    {{ competence.getNom() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 text-center">
+        <h1 class="text-center mb-4">{{ competence.getNom() }}</h1>
+
+        {% if competence.getStages() is not empty %}
+            <h2>Compétences liées au stage :</h2>
+            <ul>
+                {% for stage in competence.getStages() %}
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 mx-auto d-flex align-items-center text-center">
+                            <img src="{{ asset('images/projets/' ~ stage.getLogo()) }}" class="img-fluid rounded-start" alt="{{ stage.getNom() }}" style="width: 70%;">
+                        </div>
+    
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <strong>{{ stage.getNom() }}</strong>
+                                </h5>
+                                <p class="card-text">{{ stage.getDescr() }}</p>
+                                <a href="{{ path('app_pro-detail', {'id': stage.getId()}) }}" class="btn btn-primary">Voir en détail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun stage lié à cette compétence.</p>
+        {% endif %}
+
+        {% for projet in projets %}
+            <div class="card mb-3 h-100">
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('images/projets/' ~ projet.getImage()) }}" class="img-fluid rounded-start" alt="{{ projet.getNom() }}" style="max-width: 300px; max-height: 300px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                            <h5 class="card-title">
+                                <strong>{{ projet.getNom() }}</strong>
+                            </h5>
+                            <p class="card-text">{{ projet.getDescription() }}</p>
+                            <a href="{{ path('app_projet-detail', {'id': projet.getId()}) }}" class="btn btn-primary">Voir en détail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

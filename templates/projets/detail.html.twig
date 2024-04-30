@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} {{ projet.getNom() }}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Vous regardez : {{ projet.getNom() }}</h1>
+
+    <div class="card mb-3">
+        <div class="row g-0">
+
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <a href="{{ asset('images/projets/' ~ projet.getImage()) }}" target="_blank">
+                    <img src="{{ asset('images/projets/' ~ projet.getImage()) }}" class="img-fluid rounded-start"
+                        alt="{{ projet.getNom() }}" style="max-width: 100%; max-height: 400px;">
+                </a>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>{{ projet.getNom() }}</strong></h5>
+                    <p class="card-text"><strong>Description :</strong> {{ projet.getDescription() }}</p>
+                    <p class="card-text"><strong>Date de début :</strong> {{ projet.getDateDebut() ?
+                        projet.getDateDebut()|date('d/m/Y') : 'Non spécifiée' }}</p>
+                    <p class="card-text"><strong>Date de fin :</strong> {{ projet.getDateFin() ?
+                        projet.getDateFin()|date('d/m/Y') : 'Non spécifiée' }}</p>
+
+                    {% if projet.getLien() is not empty %}
+                        <p class="card-text"><strong>Lien du projet :</strong> <a href="{{ projet.getLien() }}" target="_blank">{{ projet.getLien() }}</a></p>
+                    {% endif %}
+
+                    <h6><strong>Langages et logiciels utilisés :</strong></h6>
+                    <div class="d-flex flex-wrap">
+                        {% for logiciel in projet.getLogiciels() %}
+                            <div class="m-2">
+                                <img src="{{ asset('images/logiciels/' ~ logiciel.getImage()) }}"
+                                    alt="{{ logiciel.getNom() }}" class="img-thumbnail"
+                                    style="max-width: 50px; max-height: 50px;">
+                            </div>
+                        {% endfor %}
+                        {% for logicielWin in projet.getLogicielWin() %}
+                            <div class="m-2">
+                                <img src="{{ asset('images/windows/' ~ logicielWin.getImage()) }}"
+                                    alt="{{ logicielWin.getNom() }}" class="img-thumbnail"
+                                    style="max-width: 50px; max-height: 50px;">
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <p><strong>Compétences liées au projet :</strong>
+                    <ul>
+                        {% for competence in projet.getCompetences() %}
+                            <li><a href="{{ path('app_competence-detail', {'id': competence.getId()}) }}">{{ competence.getNom() }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                    <a href="{{ path('app_projets') }}" class="btn btn-primary">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

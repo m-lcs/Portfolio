@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Certifications
+{% endblock %}
+
+{% block body %}
+    <style>
+        .zoom-effect {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-effect:hover {
+            transform: scale(1.1);
+        }
+    </style>
+
+    <div class="container mt-5">
+        <div class="row section-container">
+            <div class="col-md-12 text-center">
+                <p class="text-center mb-4">Au fil de mon parcours, j'ai également obtenu certaines certifications. Découvrez-les ci-dessous :</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            {% for certification in certifications %}
+                <div class="col-md-4 mb-4 d-flex flex-column justify-content-between">
+                    <div class="card w-100">
+                        <div class="card-body text-center">
+                            <a href="{{ asset('images/certifications/' ~ certification.getImage()) }}" target="_blank">
+                                <img src="{{ asset('images/certifications/' ~ certification.getImage()) }}" class="img-fluid mb-3 zoom-effect" alt="{{ certification.getNom() }}">
+                            </a>
+                            <h5 class="card-title">{{ certification.getNom() }}</h5>
+                            <p class="card-text">{{ certification.getDescr() }}</p>
+                            <p class="card-text"><strong>Date d'obtention :</strong> {{ certification.getDateObtention()|date('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

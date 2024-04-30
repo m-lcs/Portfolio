@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Tableau Interactif
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Projets</th>
+                    {% for competence in competences %}
+                        <th>{{ competence.getNom() }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for projet in projets %}
+                    <tr>
+                        <td>{{ projet.getNom() }}</td>
+                        {% for competence in competences %}
+                            {% if projet.getCompetences().contains(competence) %}
+                                <td style="background-color: #333; color: white;"><a href="{{ path('app_projet-detail', {'id': projet.getId()}) }}" style="color: white;">Accéder au projet</a></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                <tr style="border-top: 1px solid black;">
+                    <td colspan="{{ competences|length + 1 }}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

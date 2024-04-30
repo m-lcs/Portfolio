@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Projets
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Liste de tous mes projets</h1>
+
+        {% for annee in annees %}
+            {% if annee.getAnnee() == 1 %}
+                <h4 class="text-center mb-4">Projets réalisés dans le cadre de la première année (SN1) :</h4>
+            {% elseif annee.getAnnee() == 2 %}
+                <h4 class="text-center mb-4">Projets réalisés dans le cadre de la deuxième année (SN2) :</h4>
+            {% endif %}
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for projet in annee.getProjets() %}
+                    <div class="col">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>{{ projet.getNom() }}</strong></h5>
+                                <a href="{{ path('app_projet-detail', {'id': projet.getId()}) }}" class="btn btn-primary">Voir le projet</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

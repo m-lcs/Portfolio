@@ -1,49 +1,92 @@
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>
-			{% block title %}Lucas MONIEZ -
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
-			<link href="https://bootswatch.com/5/lumen/bootstrap.min.css" rel="stylesheet">
-			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ asset('images/logo2.png') }}" type="image/x-icon">
+	<title>
+		{% block title %}Lucas MONIEZ -
 		{% endblock %}
-	</head>
-	<div class="navbar">
-		<div class="logo">
-			<img src="votre_logo.png" alt="Logo" href="{{path('app_accueil')}}">
-		</div>
-		<div class="nav-links">
-			<ul>
-				<li><a href="{{path('app_accueil')}}">Accueil</a></li>
-				<li><a href="{{path('app_competences')}}">Compétences</a></li>
-				<li><a href="#">Projets</a></li>
-				<li><a href="#">Professionnel</a></li>
-				<li><a href="#">Certifications</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>
-		<div class="menu-hamburger">&#9776;</div>
-	</div>
-	<body>
-		{% block body %}{% endblock %}
-	</body>
-	<footer>
-		<p>&copy; 2023 Lucas Moniez. Tous droits réservés.</p>
-		<div class="legal-info">
-			<a href="/privacy">Mentions légales</a>
-		</div>
-		<div class="footer-links">
-			<a href="https://www.linkedin.com/in/lucas-moniez-2228a7218/" target="_blank"><img src="{{ asset('images/linkedin-icon.png') }}" alt="LinkedIn"></a>
-			<a href="https://github.com/m-lucas7" target="_blank"><img src="{{ asset('images/github-icon.png') }}" alt="GitHub"></a>
-			<a href="/contact"><img src="{{ asset('images/contact-icon.png') }}" alt="Contact"></a>
-		</div>
-	</footer>
-	{% block javascripts %}
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Q
-																																										yq46cDfL" crossorigin="anonymous"></script>
+	</title>
+	{% block stylesheets %}
+	<link href="https://bootswatch.com/5/lumen/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	{% endblock %}
-</html></body></html>
+</head>
+<video autoplay muted loop class="background-video">
+	<source src="{{ asset('videos/video.mov') }}" type="video/mov">
+</video>
+<div class="navbar">
+	<div class="logo">
+		<img src="{{ asset('images/logo.png') }}" alt="Logo" href="{{path('app_accueil')}}" class="logo-img">
+	</div>
+	<div class="menu">
+		<ul>
+			<li><a href="{{path('app_accueil')}}">Accueil</a></li>
+			<li><a href="{{path('app_competences')}}">Compétences</a></li>
+			<li><a href="{{path('app_projets')}}">Projets</a></li>
+			<li><a href="{{path('app_pro')}}">Professionnel</a></li>
+			<li><a href="{{path('app_certifications')}}">Certifications</a></li>
+			<li><a href="{{path('app_veille')}}">Veille technologique</a></li>
+		</ul>
+	</div>
+	<div class="menu-toggle">
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+</div>
+
+{% for message in app.flashes('notice') %}
+<h2 class="alert alert-warning text-center mt-4 mb-4" role="alert">
+	{{ message }}
+</h2>
+{% endfor %}
+
+<body>
+
+	{% block body %}{% endblock %}
+
+	<div>
+		<footer class="footer hide-footer" id="main-footer">
+			<div class="container">
+				<div class="footer-content">
+					<div class="footer-text" style="text-align: center;">
+						<p>&copy; 2023-2024 MONIEZ Lucas. Tous droits réservés.</p>
+					</div>
+					<div class="footer-text" style="text-align: center;">
+						<p>Mentions légales -
+							<a href="{{path('app_contact')}}">Contact</a>
+						</p>
+					</div>
+					<div>
+						<a href="https://www.linkedin.com/in/lucas-moniez-2228a7218//" target="_blank"
+							rel="noopener noreferrer">
+							<img src="{{ asset('images/linkedin-icon.png') }}" alt="LinkedIn"
+								style="max-width: 30px; margin-right: 10px; vertical-align: middle;">
+						</a>
+						<a href="https://github.com/m-lucas7?tab=repositories" target="_blank"
+							rel="noopener noreferrer">
+							<img src="{{ asset('images/github-icon.png') }}" alt="GitHub"
+								style="max-width: 30px; vertical-align: middle;">
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+	</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>

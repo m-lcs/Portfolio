@@ -18,11 +18,15 @@ class Annee
     #[ORM\Column]
     private ?int $annee = null;
 
+    #[ORM\OneToMany(mappedBy: 'annee', targetEntity: Stages::class)]
+    private Collection $stages;
+
     #[ORM\OneToMany(mappedBy: 'annee', targetEntity: Projets::class)]
     private Collection $projets;
 
     public function __construct()
     {
+        $this->stages = new ArrayCollection();
         $this->projets = new ArrayCollection();
     }
 
@@ -39,6 +43,36 @@ class Annee
     public function setAnnee(int $annee): static
     {
         $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stages>
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stages $stage): static
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages->add($stage);
+            $stage->setAnnee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stages $stage): static
+    {
+        if ($this->stages->removeElement($stage)) {
+            // set the owning side to null (unless already changed)
+            if ($stage->getAnnee() === $this) {
+                $stage->setAnnee(null);
+            }
+        }
 
         return $this;
     }

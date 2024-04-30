@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    {{ stage.getNom() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">{{ stage.getNom() }}</h1>
+
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 mx-auto d-flex align-items-center text-center">
+                    <img src="{{ asset('images/projets/' ~ stage.getLogo()) }}" class="img-fluid rounded-start" alt="{{ stage.getNom() }}" style="width: 70%;">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>{{ stage.getNom() }}</strong>
+                        </h5>
+                        <p class="card-text">
+                            <strong>Description :</strong>
+                            {{ stage.getDescr() }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Date de début :</strong>
+                            {{ stage.getDateDebut() ? stage.getDateDebut()|date('d/m/Y') : 'Non spécifiée' }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Date de fin :</strong>
+                            {{ stage.getDateFin() ? stage.getDateFin()|date('d/m/Y') : 'Non spécifiée' }}
+                        </p>
+                        <h6>
+                            <strong>Logiciels utilisés et langages :</strong>
+                        </h6>
+                        <ul class="list-inline">
+                            {% for logiciel in stage.getLogiciels() %}
+                                <li class="list-inline-item">
+                                    <img src="{{ asset('images/logiciels/' ~ logiciel.getImage()) }}" alt="{{ logiciel.getNom() }}" class="img-thumbnail" style="max-width: 50px; max-height: 50px;">
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% if stage.getCompetences() is not empty %}
+                            <h6><strong>Compétences liées au stage :</strong></h6>
+                            <ul>
+                                {% for competence in stage.getCompetences() %}
+                                    <li>
+                                        <a href="{{ path('app_competence-detail', {'id': competence.getId()}) }}">
+                                            {{ competence.getNom() }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <div class="mt-3">
+                            <a href="{{ asset('stages/Stage.pdf') }}" class="btn btn-danger" download>Accéder à mon attestation de stage</a>
+                        </div>
+                        <div class="mt-3">
+                            <a href="{{ stage.getLienRapport() }}" class="btn btn-info" download type="application/pdf">Accéder à mon rapport de stage</a>
+                        </div>                                                                  
+                        <div class="mt-3">
+                            <a href="{{ asset('stages/Soutenance de Stage.pptx') }}" class="btn btn-warning" download>Accéder à mon diaporama</a>
+                        </div>
+
+                        <a href="{{ path('app_pro') }}" class="btn btn-primary mt-3">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
